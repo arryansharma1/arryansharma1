@@ -20,7 +20,7 @@
 ## 🌐 Socials
 
 <p align="left">
-<a href="https://linkedin.com/in/aryansharma7341">
+<a href="https://linkedin.com/in/arryansharma">
 <img src="https://skillicons.dev/icons?i=linkedin" />
 </a>
 <a href="mailto:aryansharma7341.as@gmail.com">
