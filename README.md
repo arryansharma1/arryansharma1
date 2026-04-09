@@ -20,7 +20,7 @@
 
 <div align="left">
 
-Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and occasionally breaking them in creative ways 😄).
+Hey! I'm **Aryan** — a AI & DS Graduate obsessed with making machines smarter (and occasionally breaking them in creative ways 😄).
 
 - 🧠 Currently deep-diving into **DSA, Machine Learning & Deep Learning**
 - 🤝 Open to collaborating on **ML and Deep Learning projects**
