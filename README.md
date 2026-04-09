@@ -9,7 +9,9 @@
   <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&pause=900&color=58A6FF&center=true&vCenter=true&width=650&lines=Building+intelligent+systems+from+data;Turning+coffee+into+models+%E2%98%95;Optimizing+algorithms+%7C+Scaling+ideas;Learning+something+new+every+day;From+DSA+to+Deep+Learning+pipelines" />
 </p>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## 👨‍💻 About Me
 
@@ -30,7 +32,9 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
 
 <br clear="right"/>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## ⚡ Skills & Tech
 
@@ -71,7 +75,9 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
 
 </div>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## 📈 GitHub Activity
 
@@ -83,7 +89,9 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
 
 </div>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## 🐍 Contribution Graph
 
@@ -98,7 +106,9 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
   </picture>
 </div>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## 🤝 Let's Connect
 
@@ -118,7 +128,9 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
 
 </div>
 
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 
 ## 💭 Dev Wisdom
 
