@@ -23,7 +23,7 @@ Hey! I'm **Aryan** — a CS student obsessed with making machines smarter (and o
 - 🧠 Currently deep-diving into **DSA, Machine Learning & Deep Learning**
 - 🤝 Open to collaborating on **ML and Deep Learning projects**
 - 🔭 Looking for guidance in **Data Science**
-- 💬 Happy to talk about **Python, ML algorithms, or why your model won't converge**
+- 💬 Happy to talk about **Python, ML algorithms, or why your model won't work**
 - ⚡ I'm told I'm funny — the jury is still out
 
 </div>
