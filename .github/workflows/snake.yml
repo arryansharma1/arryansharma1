@@ -1,8 +1,7 @@
-name: Generate Snake
-
+name: 🐍 Generate Snake
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: '30 18 * * *'   # 18:30 UTC = 00:00 IST (midnight Indian time)
   workflow_dispatch:
 
 permissions:
@@ -11,19 +10,19 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-
     steps:
       - uses: Platane/snk@v3
         with:
           github_user_name: arryansharma1
           outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-contribution-grid-snake.svg?palette=github-light
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=58A6FF&color_dots[]=0d1117,1a2f5e,1f3b73,2d5a9e,58A6FF
+            dist/github-contribution-grid-snake.svg?palette=github&color_snake=1f3b73&color_dots[]=ebedf0,9be9a8,40c463,30a14e,216e39
 
       - name: Push snake
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: output
           build_dir: dist
+          commit_message: "🐍 chore: update contribution snake [skip ci]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
