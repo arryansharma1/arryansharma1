@@ -1,7 +1,7 @@
 name: 🐍 Generate Snake
 on:
   schedule:
-    - cron: '*/30 * * * *'   # Every 30 min — near real-time
+    - cron: '30 18 * * *'   # 18:30 UTC = 00:00 IST (midnight Indian time)
   workflow_dispatch:
 
 permissions:
@@ -11,18 +11,12 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - uses: Platane/snk@v3
         with:
           github_user_name: arryansharma1
           outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=00D4FF&color_dots[]=0d1117,1a2f5e,1f3b73,2d5a9e,58A6FF
-            dist/github-contribution-grid-snake.svg?palette=github&color_snake=0077CC&color_dots[]=ebedf0,9be9a8,40c463,30a14e,216e39
-
-      - name: ✨ Enhance SVGs
-        run: python3 .github/scripts/enhance_snake.py
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=58A6FF&color_dots[]=0d1117,1a2f5e,1f3b73,2d5a9e,58A6FF
+            dist/github-contribution-grid-snake.svg?palette=github&color_snake=1f3b73&color_dots[]=ebedf0,9be9a8,40c463,30a14e,216e39
 
       - name: Push snake
         uses: crazy-max/ghaction-github-pages@v3
