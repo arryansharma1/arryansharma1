@@ -1,7 +1,7 @@
 name: 🐍 Generate Snake
 on:
   schedule:
-    - cron: '*/30 * * * *'   # Every 30 min — contributions reflect almost immediately
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -15,102 +15,90 @@ jobs:
         with:
           github_user_name: arryansharma1
           outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=58A6FF&color_dots[]=0d1117,1a2f5e,1f3b73,2d5a9e,58A6FF
-            dist/github-contribution-grid-snake.svg?palette=github&color_snake=1f3b73&color_dots[]=ebedf0,9be9a8,40c463,30a14e,216e39
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=00D4FF&color_dots[]=0d1117,1a2f5e,1f3b73,2d5a9e,58A6FF
+            dist/github-contribution-grid-snake.svg?palette=github&color_snake=0077CC&color_dots[]=ebedf0,9be9a8,40c463,30a14e,216e39
 
-      - name: ✨ Inject glow + pulse effects into SVG
+      - name: Write enhancer script
         run: |
-          python3 << 'EOF'
+          cat > enhance.py << 'PYEOF'
           import re
 
+          FILTERS = (
+            '<defs>'
+            '<filter id="snake-glow" x="-50%" y="-50%" width="200%" height="200%">'
+            '<feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur1"/>'
+            '<feGaussianBlur in="SourceGraphic" stdDeviation="1.0" result="blur2"/>'
+            '<feMerge>'
+            '<feMergeNode in="blur1"/>'
+            '<feMergeNode in="blur2"/>'
+            '<feMergeNode in="SourceGraphic"/>'
+            '</feMerge>'
+            '</filter>'
+            '<filter id="head-pulse" x="-80%" y="-80%" width="260%" height="260%">'
+            '<feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="outerGlow"/>'
+            '<feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="innerGlow"/>'
+            '<feMerge>'
+            '<feMergeNode in="outerGlow"/>'
+            '<feMergeNode in="outerGlow"/>'
+            '<feMergeNode in="innerGlow"/>'
+            '<feMergeNode in="SourceGraphic"/>'
+            '</feMerge>'
+            '</filter>'
+            '</defs>'
+          )
+
+          def make_css(pulse_color):
+            return (
+              '<style>'
+              '@keyframes headPulse {'
+              '0%,100% { filter: url(#head-pulse) brightness(1); }'
+              '50%      { filter: url(#head-pulse) brightness(1.8); }'
+              '}'
+              '@keyframes bodyShimmer {'
+              '0%,100% { opacity: 1; }'
+              '50%      { opacity: 0.82; }'
+              '}'
+              '.snake-head {'
+              'animation: headPulse 1.4s ease-in-out infinite;'
+              'fill: ' + pulse_color + ' !important;'
+              '}'
+              '.snake-body {'
+              'animation: bodyShimmer 2s ease-in-out infinite;'
+              '}'
+              '</style>'
+            )
+
           def enhance_svg(filepath, snake_hex, is_dark):
-              with open(filepath, 'r') as f:
-                  content = f.read()
+            with open(filepath, 'r') as f:
+              content = f.read()
 
-              # ── 1. SVG filter definitions ──────────────────────────────────
-              # snake-glow  : soft outer glow around every body segment
-              # snake-trail : slightly stronger blur for a motion-trail feel
-              # head-pulse  : bright halo on the snake head
-              filters = """
-    <defs>
-      <filter id="snake-glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur1"/>
-        <feGaussianBlur in="SourceGraphic" stdDeviation="1.0" result="blur2"/>
-        <feMerge>
-          <feMergeNode in="blur1"/>
-          <feMergeNode in="blur2"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
+            pulse_color = '#80EAFF' if is_dark else '#0077CC'
+            inject = FILTERS + make_css(pulse_color)
 
-      <filter id="head-pulse" x="-80%" y="-80%" width="260%" height="260%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="outerGlow"/>
-        <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="innerGlow"/>
-        <feMerge>
-          <feMergeNode in="outerGlow"/>
-          <feMergeNode in="outerGlow"/>
-          <feMergeNode in="innerGlow"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>"""
+            content = re.sub(
+              r'(<svg\b[^>]*>)',
+              r'\1' + inject,
+              content, count=1
+            )
 
-              # ── 2. Extra CSS: pulsing head + smooth snake speed ────────────
-              pulse_color  = "#7cc8ff" if is_dark else "#1f3b73"
-              extra_css = f"""
-    <style>
-      /* Pulse animation on the snake head */
-      @keyframes headPulse {{
-        0%,100% {{ filter: url(#head-pulse) brightness(1);   }}
-        50%      {{ filter: url(#head-pulse) brightness(1.6); }}
-      }}
-      /* Subtle shimmer on body segments */
-      @keyframes bodyShimmer {{
-        0%,100% {{ opacity: 1;    }}
-        50%      {{ opacity: 0.82; }}
-      }}
-      /* Apply pulse to the head element (snk marks it with class .snake-head) */
-      .snake-head {{
-        animation: headPulse 1.4s ease-in-out infinite;
-        fill: {pulse_color} !important;
-      }}
-      /* Body shimmer */
-      .snake-body {{
-        animation: bodyShimmer 2s ease-in-out infinite;
-      }}
-    </style>"""
-
-              # ── 3. Inject filters right after the opening <svg> tag ────────
+            for variant in [snake_hex, snake_hex.lstrip('#')]:
+              escaped = re.escape(variant)
               content = re.sub(
-                  r'(<svg\b[^>]*>)',
-                  r'\1' + filters + extra_css,
-                  content, count=1
+                r'fill="#' + escaped + r'"|fill="' + escaped + r'"',
+                'fill="' + snake_hex + '" filter="url(#snake-glow)"',
+                content
               )
 
-              # ── 4. Attach glow filter to every snake-coloured element ──────
-              #    snk fills body segments with the color_snake hex value
-              escaped = re.escape(snake_hex)
-              content = re.sub(
-                  rf'fill="{escaped}"',
-                  f'fill="{snake_hex}" filter="url(#snake-glow)"',
-                  content
-              )
+            with open(filepath, 'w') as f:
+              f.write(content)
+            print('Enhanced: ' + filepath)
 
-              with open(filepath, 'w') as f:
-                  f.write(content)
-              print(f"✅ Enhanced: {filepath}")
+          enhance_svg('dist/github-contribution-grid-snake-dark.svg', '#00D4FF', True)
+          enhance_svg('dist/github-contribution-grid-snake.svg', '#0077CC', False)
+          PYEOF
 
-          enhance_svg(
-              'dist/github-contribution-grid-snake-dark.svg',
-              snake_hex='#58A6FF',
-              is_dark=True
-          )
-          enhance_svg(
-              'dist/github-contribution-grid-snake.svg',
-              snake_hex='#1f3b73',
-              is_dark=False
-          )
-          EOF
+      - name: ✨ Run enhancer
+        run: python3 enhance.py
 
       - name: Push snake
         uses: crazy-max/ghaction-github-pages@v3
