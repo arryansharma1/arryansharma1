@@ -1,8 +1,8 @@
 name: 🎬 Rotate Daily GIF
 on:
   schedule:
-    - cron: '0 0 * * *'   # Midnight UTC every day
-  workflow_dispatch:       # Also lets you trigger it manually to test
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   update-gif:
@@ -60,8 +60,8 @@ jobs:
 
           echo "Day $DAY → GIF index $INDEX → $GIF"
 
-          # ✅ FIXED: now matches both ">" and "/>"
-          sed -i 's|<img align="right" width="300" alt="daily gif" src="[^"]*"/?>|<img align="right" width="300" alt="daily gif" src="'"$GIF"'"/>|' README.md
+          # ✅ Replace ONLY the src value (keeps formatting identical)
+          sed -i 's|src="[^"]*giphy.gif"|src="'"$GIF"'"|' README.md
 
       - name: Commit & push if README changed
         run: |
