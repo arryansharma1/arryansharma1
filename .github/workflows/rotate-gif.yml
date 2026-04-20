@@ -11,15 +11,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5        # ✅ Updated from v4 → v5 (Node.js 24)
-
-      - name: 🔍 Debug - show current img tag in README
-        run: |
-          echo "=== Searching for 'daily gif' tag ==="
-          grep -n 'daily gif' README.md && echo "✅ Tag found!" || echo "❌ TAG NOT FOUND - check your README for alt=\"daily gif\""
-          echo ""
-          echo "=== Full img tags in README (for comparison) ==="
-          grep -n '<img' README.md || echo "No <img> tags found at all"
+        uses: actions/checkout@v5
 
       - name: Pick today's GIF and update README
         run: |
@@ -52,39 +44,23 @@ jobs:
           GIF="${GIFS[$INDEX]}"
           echo "📅 Day $DAY → GIF index $INDEX → $GIF"
 
+          # Simply replace ANY giphy URL found in README — no tag matching needed
           python3 -c "
           import re
           gif = '$GIF'
           content = open('README.md').read()
-          new = re.sub(
-            r'(<img\b[^>]*\balt=\"daily gif\"[^>]*\bsrc=\")[^\"]*\"',
-            r'\g<1>' + gif + '\"',
-            content
-          )
-          new = re.sub(
-            r'(<img\b[^>]*\bsrc=\")[^\"]*(\"\s[^>]*\balt=\"daily gif\")',
-            r'\g<1>' + gif + r'\2',
-            new
-          )
+          new = re.sub(r'https://media\.giphy\.com/media/[^\"\')\s]+', gif, content)
           open('README.md', 'w').write(new)
-          if new != content:
-            print('✅ README updated successfully!')
-          else:
-            print('⚠️  NO CHANGE - pattern did not match. Check the debug step above.')
+          print('✅ Updated!' if new != content else '⚠️ No giphy URL found in README at all!')
           "
-
-      - name: 🔍 Debug - show README img tag AFTER replacement
-        run: |
-          echo "=== img tag after replacement ==="
-          grep -n 'daily gif' README.md || echo "Still not found!"
 
       - name: Commit & push if README changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet README.md && echo "⚠️  No changes to commit - README unchanged." || (
+          git diff --quiet README.md && echo "⚠️ Nothing to commit." || (
             git add README.md
             git commit -m "🎬 chore: rotate daily GIF [skip ci]"
             git push
-            echo "✅ Pushed successfully!"
+            echo "✅ Pushed!"
           )
