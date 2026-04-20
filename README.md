@@ -1,3 +1,4 @@
+div align="center">
 <div align="center">
 
 <!-- ── HEADER: slice style — sharp diagonal cut, dynamic feel ── -->
@@ -15,6 +16,7 @@
 
 ## 👨‍💻 About Me
 
+<!-- Replace the src with your Vercel daily-gif URL once deployed. Setup in comment at bottom. -->
 <img align="right" width="300" alt="daily gif" src="https://i.giphy.com/13HgwGsXF0aiGY.gif"/>
 
 <div align="left">
