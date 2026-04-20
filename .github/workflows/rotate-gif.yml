@@ -1,9 +1,8 @@
 name: 🎬 Rotate Daily GIF
 on:
   schedule:
-    - cron: '30 18 * * *'   # 18:30 UTC = 00:00 IST (midnight Indian time)
-  workflow_dispatch:
-
+    - cron: '0 0 * * *'   # Midnight UTC every day
+  workflow_dispatch:       # Also lets you trigger it manually to test
 jobs:
   update-gif:
     runs-on: ubuntu-latest
@@ -12,9 +11,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
       - name: Pick today's GIF and update README
         run: |
+          # ── 15 funny + technical GIFs ──────────────────────────────────────
           GIFS=(
             "https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif"         # 00 - fast typing
             "https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif"          # 01 - l33t hacker
@@ -52,14 +51,13 @@ jobs:
             "https://media.giphy.com/media/xT9IgG6DSPTRXgDhkc/giphy.gif"   # 33 - model training forever
             "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif"   # 34 - roll safe (just don't overfit)
           )
-
+          # Day of year (001–366) → pick index 0–14
           DAY=$(date +%j)
           INDEX=$(( (10#$DAY - 1) % ${#GIFS[@]} ))
           GIF="${GIFS[$INDEX]}"
           echo "Day $DAY → GIF index $INDEX → $GIF"
-
+          # Replace ONLY the daily-gif img tag (keyed on alt="daily gif")
           sed -i 's|<img align="right" width="300" alt="daily gif" src="[^"]*"|<img align="right" width="300" alt="daily gif" src="'"$GIF"'"|' README.md
-
       - name: Commit & push if README changed
         run: |
           git config user.name  "github-actions[bot]"
