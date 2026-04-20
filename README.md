@@ -15,7 +15,7 @@
 
 ## 👨‍💻 About Me
 
-<img align="right" width="300" alt="daily gif" src="https://i.giphy.com/xT0xeJpnrWC4XWblEk.gif"/>
+<img align="right" width="300" alt="daily gif" src="./daily.gif"/>
 
 <div align="left">
 
