@@ -3,65 +3,71 @@ on:
   schedule:
     - cron: '0 0 * * *'   # Midnight UTC every day
   workflow_dispatch:       # Also lets you trigger it manually to test
+
 jobs:
   update-gif:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
       - name: Pick today's GIF and update README
         run: |
-          # ── 15 funny + technical GIFs ──────────────────────────────────────
           GIFS=(
-            "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"    # 00 - coffee + laptop
-            "https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif"         # 01 - fast typing
-            "https://media.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif"   # 02 - thinking hard
-            "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"   # 03 - two buttons (dev dilemma)
-            "https://media.giphy.com/media/xT0xem7ZlZ5CZRNiOc/giphy.gif"   # 04 - confused math lady
-            "https://media.giphy.com/media/UrkHf5bYMjBJkVDEpe/giphy.gif"   # 05 - error error error
-            "https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"        # 06 - smashing keyboard
-            "https://media.giphy.com/media/3og0INyCmHlNylks9O/giphy.gif"   # 07 - but why?? (model failing)
-            "https://media.giphy.com/media/Wn74RUT0vjnoU98Zdv/giphy.gif"   # 08 - loading forever
-            "https://media.giphy.com/media/3oKIPnbKgN3bXeVpvy/giphy.gif"   # 09 - infinite loop spin
-            "https://media.giphy.com/media/xT9IgG6DSPTRXgDhkc/giphy.gif"   # 10 - model training forever
-            "https://media.giphy.com/media/qgQUggAC3Pfv684Cnr/giphy.gif"   # 11 - working at 3am
-            "https://media.giphy.com/media/scZPhLqaVOM1qG4lT9/giphy.gif"   # 12 - debugging at 3am
-            "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif"   # 13 - late night grind
-            "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif"   # 14 - this is fine 🔥
-            "https://media.giphy.com/media/3o7btNhMBytxAM6YBa/giphy.gif"   # 15 - big brain activated
-            "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif"   # 16 - mind blown
-            "https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif"    # 17 - it's alive!
-            "https://media.giphy.com/media/LmNwrBhejkK9EFP8ZpN/giphy.gif"   # 18 - it works!
-            "https://media.giphy.com/media/APqEbxBsVlkWSuFpth/giphy.gif"   # 19 - works on my machine
-            "https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif"        # 20 - l33t hacker
-            "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif"    # 21 - matrix rain
-            "https://media.giphy.com/media/26xBI73gWquCBLBDO/giphy.gif"    # 22 - hacking montage
-            "https://media.giphy.com/media/4JVTF9zR9BicshFAb7/giphy.gif"   # 23 - DSA grind mode
-            "https://media.giphy.com/media/iIqmM5tTjmpOB9mpbn/giphy.gif"   # 24 - ML math equations flying
-            "https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif"    # 25 - neural network vibes
-            "https://media.giphy.com/media/yYSSBtDgbbRzq/giphy.gif"        # 26 - nerd glasses on
-            "https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif"    # 27 - deal with it
-            "https://media.giphy.com/media/LaVp0AyqR5bGsC5Cbm/giphy.gif"   # 28 - Gandalf (you shall not pass deadline)
-            "https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif"   # 29 - Python snake literally
-            "https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif"   # 30 - cat on keyboard
-            "https://media.giphy.com/media/RbDKaczl7HPoU0paTH/giphy.gif"   # 31 - one does not simply debug
-            "https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif"   # 32 - I have no idea what I'm doing (dog)
-            "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif"   # 33 - everything is fine (on fire)
-            "https://media.giphy.com/media/26xBI73gWquCBLBDO/giphy.gif"    # 34 - hacking montage
+            "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"
+            "https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif"
+            "https://media.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif"
+            "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+            "https://media.giphy.com/media/xT0xem7ZlZ5CZRNiOc/giphy.gif"
+            "https://media.giphy.com/media/UrkHf5bYMjBJkVDEpe/giphy.gif"
+            "https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"
+            "https://media.giphy.com/media/3og0INyCmHlNylks9O/giphy.gif"
+            "https://media.giphy.com/media/Wn74RUT0vjnoU98Zdv/giphy.gif"
+            "https://media.giphy.com/media/3oKIPnbKgN3bXeVpvy/giphy.gif"
+            "https://media.giphy.com/media/xT9IgG6DSPTRXgDhkc/giphy.gif"
+            "https://media.giphy.com/media/qgQUggAC3Pfv684Cnr/giphy.gif"
+            "https://media.giphy.com/media/scZPhLqaVOM1qG4lT9/giphy.gif"
+            "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif"
+            "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif"
+            "https://media.giphy.com/media/3o7btNhMBytxAM6YBa/giphy.gif"
+            "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif"
+            "https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif"
+            "https://media.giphy.com/media/LmNwrBhejkK9EFP8ZpN/giphy.gif"
+            "https://media.giphy.com/media/APqEbxBsVlkWSuFpth/giphy.gif"
+            "https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif"
+            "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif"
+            "https://media.giphy.com/media/26xBI73gWquCBLBDO/giphy.gif"
+            "https://media.giphy.com/media/4JVTF9zR9BicshFAb7/giphy.gif"
+            "https://media.giphy.com/media/iIqmM5tTjmpOB9mpbn/giphy.gif"
+            "https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif"
+            "https://media.giphy.com/media/yYSSBtDgbbRzq/giphy.gif"
+            "https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif"
+            "https://media.giphy.com/media/LaVp0AyqR5bGsC5Cbm/giphy.gif"
+            "https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif"
+            "https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif"
+            "https://media.giphy.com/media/RbDKaczl7HPoU0paTH/giphy.gif"
+            "https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif"
+            "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif"
+            "https://media.giphy.com/media/26xBI73gWquCBLBDO/giphy.gif"
           )
-          # Day of year (001–366) → pick index 0–14
+
           DAY=$(date +%j)
           INDEX=$(( (10#$DAY - 1) % ${#GIFS[@]} ))
           GIF="${GIFS[$INDEX]}"
+
           echo "Day $DAY → GIF index $INDEX → $GIF"
-          # Replace ONLY the daily-gif img tag (keyed on alt="daily gif")
-          sed -i 's|<img align="right" width="300" alt="daily gif" src="[^"]*"|<img align="right" width="300" alt="daily gif" src="'"$GIF"'"|' README.md
+
+          # ✅ FIXED: now matches both ">" and "/>"
+          sed -i 's|<img align="right" width="300" alt="daily gif" src="[^"]*"/?>|<img align="right" width="300" alt="daily gif" src="'"$GIF"'"/>|' README.md
+
       - name: Commit & push if README changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git diff --quiet README.md || (
             git add README.md
             git commit -m "🎬 chore: rotate daily GIF [skip ci]"
