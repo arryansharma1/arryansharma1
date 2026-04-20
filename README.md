@@ -15,8 +15,7 @@
 
 ## 👨‍💻 About Me
 
-<!-- Replace the src with your Vercel daily-gif URL once deployed. Setup in comment at bottom. -->
-<img align="right" width="300" alt="daily gif" src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif"/>
+<img align="right" width="300" alt="daily gif" src="https://i.giphy.com/xT0xeJpnrWC4XWblEk.gif"/>
 
 <div align="left">
 
