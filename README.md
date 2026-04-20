@@ -1,4 +1,4 @@
-div align="center">
+<div align="center">
 <div align="center">
 
 <!-- ── HEADER: slice style — sharp diagonal cut, dynamic feel ── -->
