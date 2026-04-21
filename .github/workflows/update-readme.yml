@@ -1,0 +1,26 @@
+name: Update README Stats
+
+on:
+  schedule:
+    - cron: '30 18 * * *'   # Runs every day at 6 AM UTC
+  workflow_dispatch:       # Lets you trigger it manually too
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Bump cache-bust value
+        run: |
+          sed -i 's/&v=[0-9]*/\&v='$(date +%s)'/' README.md
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add README.md
+          git diff --staged --quiet || git commit -m "chore: refresh README stats"
+          git push
