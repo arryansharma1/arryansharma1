@@ -84,7 +84,7 @@ Hey! I'm **Aryan** — a AI & DS Graduate obsessed with making machines smarter 
 
 <div align="center">
 <a href="https://github.com/arryansharma1">
-  <img width="85%" src="https://streak-stats.demolab.com?user=arryansharma1&theme=tokyonight&hide_border=true&border_radius=12&card_width=800&fire=FFB700&ring=58A6FF&currStreakLabel=58A6FF&sideLabels=8b949e&dates=8b949e&currStreakNum=ffffff&sideNums=ffffff&v=1776809181" alt="Streak Stats"/>
+  <img width="85%" src="https://streak-stats.demolab.com?user=arryansharma1&theme=tokyonight&hide_border=true&border_radius=12&card_width=800&fire=FFB700&ring=58A6FF&currStreakLabel=58A6FF&sideLabels=8b949e&dates=8b949e&currStreakNum=ffffff&sideNums=ffffff&v=1776812697" alt="Streak Stats"/>
 </a>
 </div>
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
