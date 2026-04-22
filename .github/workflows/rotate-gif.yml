@@ -1,7 +1,7 @@
 name: 🎬 Rotate Daily GIF
 on:
   schedule:
-    - cron: '35 19 * * *'
+    - cron: '30 18 * * *'
   workflow_dispatch:
 
 jobs:
