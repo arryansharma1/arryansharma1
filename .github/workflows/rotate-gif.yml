@@ -2,7 +2,7 @@ name: 🎬 Rotate Daily GIF
 
 on:
   schedule:
-    - cron: '29 19 * * *'   # Midnight UTC every day
+    - cron: '30 19 * * *'   # Midnight UTC every day
   workflow_dispatch:       # Also lets you trigger it manually to test
 
 jobs:
