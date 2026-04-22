@@ -16,8 +16,8 @@
 
 ## 👨‍💻 About Me
 
-<!-- Replace the src with your Vercel daily-gif URL once deployed. Setup in comment at bottom. -->
-<img align="right" width="300" alt="daily gif" src="https://i.giphy.com/13HgwGsXF0aiGY.gif"/>
+<!-- GIF is rotated daily by .github/workflows/rotate-gif.yml — DO NOT change the alt="daily gif" attribute -->
+<img align="right" width="300" alt="daily gif" src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif"/>
 
 <div align="left">
 
@@ -87,6 +87,7 @@ Hey! I'm **Aryan** — a AI & DS Graduate obsessed with making machines smarter 
   <img width="85%" src="https://streak-stats.demolab.com?user=arryansharma1&theme=tokyonight&hide_border=true&border_radius=12&card_width=800&fire=FFB700&ring=58A6FF&currStreakLabel=58A6FF&sideLabels=8b949e&dates=8b949e&currStreakNum=ffffff&sideNums=ffffff&v=1776836244" alt="Streak Stats"/>
 </a>
 </div>
+
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 
