@@ -3,13 +3,11 @@ on:
   schedule:
     - cron: '30 18 * * *'
   workflow_dispatch:
-
 jobs:
   update-gif:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -53,21 +51,18 @@ jobs:
             "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif"
             "https://media.giphy.com/media/26xBI73gWquCBLBDO/giphy.gif"
           )
-
           DAY=$(date +%j)
           INDEX=$(( (10#$DAY - 1) % ${#GIFS[@]} ))
           GIF="${GIFS[$INDEX]}"
-
           echo "Day $DAY → GIF index $INDEX → $GIF"
 
-          # ✅ Replace ONLY the src value (keeps formatting identical)
-          sed -i 's|src="[^"]*giphy.gif"|src="'"$GIF"'"|' README.md
+          # ✅ FIX: Match by alt="daily gif" so it works regardless of URL format
+          sed -i 's|alt="daily gif" src="[^"]*"|alt="daily gif" src="'"$GIF"'"|' README.md
 
       - name: Commit & push if README changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git diff --quiet README.md || (
             git add README.md
             git commit -m "🎬 chore: rotate daily GIF [skip ci]"
