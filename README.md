@@ -5,9 +5,9 @@
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1f3b73,100:58A6FF&height=200&section=header&text=Aryan%20Sharma&fontSize=55&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Machine%20Learning%20%7C%20Data%20Science%20%7C%20Deep%20Learning%20%7C%20DSA&descAlignY=60&descAlign=50"/>
 
 <!-- Typing Animation -->
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&pause=900&color=58A6FF&center=true&vCenter=true&width=650&lines=Building+intelligent+systems+from+data;Turning+coffee+into+models+%E2%98%95;Optimizing+algorithms+%7C+Scaling+ideas;Learning+something+new+every+day;From+DSA+to+Deep+Learning+pipelines" />
-</p>
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&pause=1000&color=58A6FF&center=true&vCenter=true&width=500&lines=Machine+Learning;Data+Science;Deep+Learning;DSA;Model+Optimization;Algorithm+Design;Neural+Networks;Problem+Solving&v=4"/>
+</div>
 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
