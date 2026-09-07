@@ -16,7 +16,7 @@
 ## 👨‍💻 About Me
 
 <!-- GIF is rotated daily by .github/workflows/rotate-gif.yml — DO NOT change the alt="daily gif" attribute -->
-<img align="right" width="300" alt="daily gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"/>
+<img align="right" width="300" alt="daily gif" src="https://media.giphy.com/media/xT0xem7ZlZ5CZRNiOc/giphy.gif"/>
 
 <div align="left">
 
